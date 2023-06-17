@@ -53,14 +53,11 @@ class LoginController extends Controller
             $user->api_token = $token;
             $user->save();
 
-            return response()->json([
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ]);
+            return redirect('consignments');
         }
 
         // Handle failed login attempt
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return view('auth.login');
     }
 
 }

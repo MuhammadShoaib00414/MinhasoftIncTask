@@ -14,21 +14,17 @@ use App\Http\Controllers\ConsignmentController;
 |
 */
 
+// Default Page
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
+// Auth Routes
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
-
+// After Login
 Route::middleware('auth')->group(function () {
     Route::get('/consignments', [ConsignmentController::class, 'index'])->name('consignments');
     // other protected routes...
